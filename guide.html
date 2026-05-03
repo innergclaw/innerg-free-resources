@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnerG Beginner Guide — Telegram + Voice Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#07101d; --panel:#0d1828; --panel2:#101f34; --line:rgba(97,178,255,.18);
+      --blue:#61b2ff; --cyan:#7ce7ff; --text:#f3f8ff; --muted:#a8bad0; --ok:#83f2c2;
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#03070d,#08111e);color:var(--text);line-height:1.7}
+    .wrap{width:min(920px,calc(100% - 28px));margin:0 auto;padding:40px 0 72px}
+    .card{background:linear-gradient(180deg,rgba(12,21,37,.96),rgba(8,14,26,.96));border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+    .eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:.75rem;font-weight:800}
+    h1,h2,h3{line-height:1.15;margin:0 0 14px} h1{font-size:clamp(2rem,5vw,3.6rem)} h2{font-size:1.5rem;margin-top:28px} h3{font-size:1.05rem;margin-top:20px}
+    p,li{color:var(--muted)} strong{color:var(--text)} ul,ol{padding-left:20px}
+    .brand{font-family:Orbitron,sans-serif;letter-spacing:2px;color:var(--blue);font-size:.85rem;margin-bottom:18px}
+    .pill{display:inline-block;padding:8px 12px;border:1px solid rgba(124,231,255,.28);border-radius:999px;background:rgba(124,231,255,.08);color:var(--text);font-size:.9rem;font-weight:600;margin:8px 10px 0 0}
+    .step{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;margin:14px 0}
+    .step-num{font-weight:800;color:var(--cyan);font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+    .note{border-left:3px solid var(--ok);padding:12px 14px;background:rgba(131,242,194,.06);border-radius:0 14px 14px 0;color:var(--text)}
+    code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;color:#fff}
+    .footer{margin-top:26px;color:#8ea4bf;font-size:.92rem}
+    @media print { body{background:#fff;color:#111} .card{box-shadow:none;border:1px solid #ddd;background:#fff} p,li{color:#333} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="brand">INNERG INTEL</div>
+      <div class="eyebrow">Free Resource</div>
+      <h1>Beginner Guide: Set Up Telegram + Voice Replies in OpenClaw</h1>
+      <p>If you are brand new to OpenClaw, this guide walks you through a simple beginner setup so your assistant can respond in Telegram and speak with voice enabled.</p>
+      <div>
+        <span class="pill">Beginner friendly</span>
+        <span class="pill">Telegram bot setup</span>
+        <span class="pill">Voice-ready workflow</span>
+      </div>
+
+      <h2>What you need first</h2>
+      <ul>
+        <li>An OpenClaw install already running on your machine</li>
+        <li>A Telegram account</li>
+        <li>Access to <strong>@BotFather</strong> inside Telegram</li>
+        <li>Your OpenClaw workspace and config available locally</li>
+      </ul>
+
+      <h2>Step-by-step</h2>
+
+      <div class="step">
+        <div class="step-num">Step 1</div>
+        <h3>Create your Telegram bot</h3>
+        <p>Open Telegram, message <strong>@BotFather</strong>, and run <code>/newbot</code>. Follow the prompts and save the bot token somewhere safe.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 2</div>
+        <h3>Enable Telegram in OpenClaw</h3>
+        <p>In your OpenClaw config, turn Telegram on and add your bot token. Use pairing mode for DMs if you want controlled access.</p>
+        <div class="note"><strong>Beginner default:</strong> set Telegram enabled, add your <code>botToken</code>, and use <code>dmPolicy: "pairing"</code>.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 3</div>
+        <h3>Restart OpenClaw so Telegram loads</h3>
+        <p>After saving the config, restart the gateway so the Telegram channel comes online.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 4</div>
+        <h3>Start a DM with your bot</h3>
+        <p>Send your bot a message from your Telegram account. With pairing enabled, OpenClaw will wait for you to approve that DM before it becomes active.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 5</div>
+        <h3>Approve the pairing request</h3>
+        <p>Approve the Telegram pairing code inside OpenClaw. Once approved, your Telegram account can talk directly to the assistant.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 6</div>
+        <h3>Verify Telegram is live</h3>
+        <p>Check OpenClaw status and confirm Telegram shows as active and healthy before testing messages.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 7</div>
+        <h3>Fix slow or broken replies if needed</h3>
+        <p>If Telegram feels slow or messages stop arriving, the most common beginner issue is a duplicate bot token or another process polling the same bot. Replace the old token if needed, then restart and test again.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 8</div>
+        <h3>Send a confirmation test</h3>
+        <p>Send yourself a simple confirmation message to make sure delivery works end to end.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Step 9</div>
+        <h3>Use voice replies</h3>
+        <p>Once voice is enabled in your OpenClaw runtime, Telegram can deliver spoken replies as audio. If text works but voice does not, verify your TTS provider is enabled and then test a short spoken reply first.</p>
+      </div>
+
+      <h2>Simple beginner checklist</h2>
+      <ol>
+        <li>Create bot in BotFather</li>
+        <li>Add token to OpenClaw</li>
+        <li>Enable Telegram</li>
+        <li>Restart gateway</li>
+        <li>Approve DM pairing</li>
+        <li>Confirm Telegram status is OK</li>
+        <li>Send a test message</li>
+        <li>Test a voice reply</li>
+      </ol>
+
+      <h2>Important note about voice</h2>
+      <p>The exact original voice setup sequence was not fully documented during the first pass. What is confirmed is that <strong>voice/TTS is currently enabled in the runtime</strong>. If you want, the next step is to turn this guide into a more complete version with the exact TTS provider settings, screenshots, and troubleshooting notes.</p>
+
+      <div class="footer">Prepared for InnerG Intel free resources. You can print this page to PDF or export it as a downloadable handout.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InnerG Free Resources</title>
+  <meta name="description" content="Get InnerG Free Resources and download the beginner Telegram + voice setup guide." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#050b16; --bg2:#081220; --panel:rgba(10,18,36,.9); --line:rgba(92,171,255,.18);
+      --line2:rgba(124,231,255,.28); --blue:#5cabff; --cyan:#7ce7ff; --text:#f5f9ff; --muted:#a8bbd2;
+      --accent:#89f3c7; --shadow:0 30px 80px rgba(0,0,0,.42);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,sans-serif;color:var(--text);background:radial-gradient(circle at top left, rgba(92,171,255,.14), transparent 28%),linear-gradient(180deg,#03070d 0%, #08111e 100%)}
+    .grid{position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(92,171,255,.06) 1px, transparent 1px),linear-gradient(90deg, rgba(92,171,255,.06) 1px, transparent 1px);background-size:34px 34px;mask-image:radial-gradient(circle at center, black 40%, transparent 92%)}
+    .wrap{width:min(1180px,calc(100% - 28px));margin:0 auto;padding:28px 0 60px;position:relative;z-index:1}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .brand{font-family:Orbitron,sans-serif;letter-spacing:2px;color:var(--text);text-transform:uppercase;font-size:.92rem}
+    .brand span{color:var(--blue)}
+    .cta-top a{color:var(--cyan);text-decoration:none;font-weight:700}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+    .panel{background:linear-gradient(145deg,rgba(12,20,39,.95),rgba(7,12,22,.96));border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}
+    .hero-copy{padding:34px}
+    .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid var(--line2);background:rgba(124,231,255,.08);color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+    h1{font-size:clamp(2.4rem,5vw,4.6rem);line-height:.98;margin:0 0 18px}
+    p{color:var(--muted);font-size:1.04rem;line-height:1.75}
+    .hero-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+    .point{padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02);color:var(--text);font-weight:600}
+    .form-panel{padding:28px}
+    .form-panel h2{margin:0 0 8px;font-size:1.5rem}
+    .small{font-size:.92rem;color:#8ea4bf}
+    form{display:grid;gap:12px;margin-top:18px}
+    input,button{width:100%;border-radius:16px;border:1px solid var(--line);padding:16px 16px;font:inherit}
+    input{background:rgba(255,255,255,.04);color:var(--text)}
+    input::placeholder{color:#7d91aa}
+    button{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#05111f;font-weight:900;cursor:pointer;border:none}
+    button:hover{transform:translateY(-1px)}
+    .trust{margin-top:14px;color:#9db1c9;font-size:.88rem}
+    .resource{margin-top:26px;padding:18px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.02)}
+    .resource a{color:var(--cyan);font-weight:700;text-decoration:none}
+    .section{margin-top:24px;padding:28px}
+    .section h3{margin:0 0 12px;font-size:1.3rem}
+    .bullets{display:grid;gap:10px;padding-left:18px}
+    @media (max-width: 900px){.hero{grid-template-columns:1fr}.hero-points{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">InnerG <span>Free Resources</span></div>
+      <div class="cta-top"><a href="guide.html">Preview the guide</a></div>
+    </div>
+
+    <div class="hero">
+      <section class="panel hero-copy">
+        <div class="eyebrow">Free download</div>
+        <h1>Get the beginner setup guide + future InnerG free resources</h1>
+        <p>Join the list to get practical AI-ready resources from InnerG Intel, including the beginner guide for setting up Telegram and voice replies in OpenClaw.</p>
+        <div class="hero-points">
+          <div class="point">Beginner setup guide</div>
+          <div class="point">Telegram bot walkthrough</div>
+          <div class="point">Voice-ready checklist</div>
+          <div class="point">Future InnerG resource drops</div>
+        </div>
+      </section>
+
+      <aside class="panel form-panel">
+        <h2>Download access</h2>
+        <p class="small">Collect emails here, then follow up with your INNERG FREE RESOURCES email blast.</p>
+        <form id="lead-form" action="#" method="post">
+          <input type="text" name="name" placeholder="First name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <button type="submit">Get the free resources</button>
+        </form>
+        <div class="trust">No spam. Just useful InnerG resources, updates, and future drops.</div>
+
+        <div class="resource">
+          <strong>Current free resource:</strong>
+          <p>Beginner Guide: Set Up Telegram + Voice Replies in OpenClaw</p>
+          <a href="guide.html" target="_blank" rel="noopener">Open guide preview</a>
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel section">
+      <h3>What this page is built to do</h3>
+      <ul class="bullets">
+        <li>Capture name + email from interested visitors</li>
+        <li>Offer an immediate free guide</li>
+        <li>Grow an owned list for future InnerG follow-up</li>
+        <li>Give you a clean landing page you can publish fast</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      localStorage.setItem('innergFreeResourcesLead', JSON.stringify({ ...data, submittedAt: new Date().toISOString() }));
+      window.location.href = 'thank-you.html';
+    });
+  </script>
+</body>
+</html>
