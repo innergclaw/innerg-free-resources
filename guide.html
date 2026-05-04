@@ -11,20 +11,29 @@
     :root {
       --bg:#07101d; --panel:#0d1828; --panel2:#101f34; --line:rgba(97,178,255,.18);
       --blue:#61b2ff; --cyan:#7ce7ff; --text:#f3f8ff; --muted:#a8bad0; --ok:#83f2c2;
+      --warn:#ffb347; --code-bg:rgba(255,255,255,.05);
     }
     *{box-sizing:border-box} body{margin:0;font-family:Inter,sans-serif;background:linear-gradient(180deg,#03070d,#08111e);color:var(--text);line-height:1.7}
     .wrap{width:min(920px,calc(100% - 28px));margin:0 auto;padding:40px 0 72px}
     .card{background:linear-gradient(180deg,rgba(12,21,37,.96),rgba(8,14,26,.96));border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
     .eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:2px;font-size:.75rem;font-weight:800}
-    h1,h2,h3{line-height:1.15;margin:0 0 14px} h1{font-size:clamp(2rem,5vw,3.6rem)} h2{font-size:1.5rem;margin-top:28px} h3{font-size:1.05rem;margin-top:20px}
+    h1,h2,h3{line-height:1.15;margin:0 0 14px} h1{font-size:clamp(2rem,5vw,3.6rem)} h2{font-size:1.5rem;margin-top:32px} h3{font-size:1.05rem;margin-top:20px}
     p,li{color:var(--muted)} strong{color:var(--text)} ul,ol{padding-left:20px}
     .brand{font-family:Orbitron,sans-serif;letter-spacing:2px;color:var(--blue);font-size:.85rem;margin-bottom:18px}
     .pill{display:inline-block;padding:8px 12px;border:1px solid rgba(124,231,255,.28);border-radius:999px;background:rgba(124,231,255,.08);color:var(--text);font-size:.9rem;font-weight:600;margin:8px 10px 0 0}
     .step{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;margin:14px 0}
     .step-num{font-weight:800;color:var(--cyan);font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
-    .note{border-left:3px solid var(--ok);padding:12px 14px;background:rgba(131,242,194,.06);border-radius:0 14px 14px 0;color:var(--text)}
-    code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;color:#fff}
+    .note{border-left:3px solid var(--ok);padding:12px 14px;background:rgba(131,242,194,.06);border-radius:0 14px 14px 0;color:var(--text);margin:12px 0}
+    .warn{border-left:3px solid var(--warn);padding:12px 14px;background:rgba(255,179,71,.06);border-radius:0 14px 14px 0;color:var(--text);margin:12px 0}
+    code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;color:#fff;font-size:.92em}
+    pre{background:var(--code-bg);border:1px solid var(--line);border-radius:14px;padding:16px;overflow-x:auto;line-height:1.55;font-size:.88rem;color:#d4e4f7}
+    pre code{background:none;padding:0}
     .footer{margin-top:26px;color:#8ea4bf;font-size:.92rem}
+    .toc{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:18px;padding:18px 24px;margin:20px 0}
+    .toc a{color:var(--cyan);text-decoration:none;font-weight:600}
+    .toc ul{list-style:none;padding-left:0}
+    .toc li{margin:6px 0;color:var(--muted)}
+    .toc li::before{content:"→ ";color:var(--blue)}
     @media print { body{background:#fff;color:#111} .card{box-shadow:none;border:1px solid #ddd;background:#fff} p,li{color:#333} }
   </style>
 </head>
@@ -32,96 +41,347 @@
   <div class="wrap">
     <div class="card">
       <div class="brand">INNERG INTEL</div>
-      <div class="eyebrow">Free Resource</div>
-      <h1>Beginner Guide: Set Up Telegram + Voice Replies in OpenClaw</h1>
-      <p>If you are brand new to OpenClaw, this guide walks you through a simple beginner setup so your assistant can respond in Telegram and speak with voice enabled.</p>
+      <div class="eyebrow">Free Resource — Updated Edition</div>
+      <h1>Set Up Telegram + Voice Replies in OpenClaw</h1>
+      <p>A complete beginner-friendly walkthrough. By the end, your assistant will respond in Telegram with natural-sounding voice messages powered by ElevenLabs.</p>
       <div>
         <span class="pill">Beginner friendly</span>
         <span class="pill">Telegram bot setup</span>
-        <span class="pill">Voice-ready workflow</span>
+        <span class="pill">ElevenLabs voice</span>
+        <span class="pill">Full config included</span>
       </div>
 
-      <h2>What you need first</h2>
+      <div class="toc">
+        <strong>Jump to a section:</strong>
+        <ul>
+          <li><a href="#what-you-need">What You Need</a></li>
+          <li><a href="#part1">Part 1 — Telegram Bot Setup</a></li>
+          <li><a href="#part2">Part 2 — ElevenLabs Voice Setup</a></li>
+          <li><a href="#part3">Part 3 — Connect Everything in OpenClaw</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#checklist">Full Checklist</a></li>
+        </ul>
+      </div>
+
+      <!-- ===================== WHAT YOU NEED ===================== -->
+      <h2 id="what-you-need">What You Need</h2>
       <ul>
-        <li>An OpenClaw install already running on your machine</li>
+        <li>OpenClaw installed and running on your machine</li>
         <li>A Telegram account</li>
+        <li>An ElevenLabs account (free tier works — <a href="https://elevenlabs.io" style="color:var(--cyan)">elevenlabs.io</a>)</li>
         <li>Access to <strong>@BotFather</strong> inside Telegram</li>
-        <li>Your OpenClaw workspace and config available locally</li>
+        <li>Your OpenClaw config file (<code>~/.openclaw/openclaw.json</code>)</li>
       </ul>
 
-      <h2>Step-by-step</h2>
+      <!-- ===================== PART 1: TELEGRAM ===================== -->
+      <h2 id="part1">Part 1 — Telegram Bot Setup</h2>
 
       <div class="step">
-        <div class="step-num">Step 1</div>
-        <h3>Create your Telegram bot</h3>
-        <p>Open Telegram, message <strong>@BotFather</strong>, and run <code>/newbot</code>. Follow the prompts and save the bot token somewhere safe.</p>
+        <div class="step-num">Step 1 — Create your Telegram bot</div>
+        <h3>Use @BotFather to get a bot token</h3>
+        <ol>
+          <li>Open Telegram and search for <strong>@BotFather</strong></li>
+          <li>Send the command <code>/newbot</code></li>
+          <li>Follow the prompts — pick a display name and a username (must end in <code>bot</code>)</li>
+          <li>BotFather will give you a <strong>bot token</strong> — it looks like <code>7123456789:AAH...</code></li>
+          <li><strong>Save this token.</strong> You need it in Step 3.</li>
+        </ol>
+        <div class="note">Treat your bot token like a password. Anyone with it can control your bot.</div>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 2</div>
-        <h3>Enable Telegram in OpenClaw</h3>
-        <p>In your OpenClaw config, turn Telegram on and add your bot token. Use pairing mode for DMs if you want controlled access.</p>
-        <div class="note"><strong>Beginner default:</strong> set Telegram enabled, add your <code>botToken</code>, and use <code>dmPolicy: "pairing"</code>.</div>
+        <div class="step-num">Step 2 — Open your OpenClaw config</div>
+        <h3>Locate the config file</h3>
+        <p>Your config lives at:</p>
+        <pre><code>~/.openclaw/openclaw.json</code></pre>
+        <p>Open it in any text editor. If the file is empty or new, that's fine — you'll build it out below.</p>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 3</div>
-        <h3>Restart OpenClaw so Telegram loads</h3>
-        <p>After saving the config, restart the gateway so the Telegram channel comes online.</p>
+        <div class="step-num">Step 3 — Add Telegram to your config</div>
+        <h3>Enable the Telegram channel</h3>
+        <p>Add or update the <code>channels.telegram</code> block in your config:</p>
+        <pre><code>{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_BOT_TOKEN_HERE",
+      "dmPolicy": "pairing"
+    }
+  }
+}</code></pre>
+        <div class="note"><strong>What <code>dmPolicy: "pairing"</code> means:</strong> When someone DMs your bot, OpenClaw holds the message until you approve that user. This keeps strangers from talking to your assistant.</div>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 4</div>
-        <h3>Start a DM with your bot</h3>
-        <p>Send your bot a message from your Telegram account. With pairing enabled, OpenClaw will wait for you to approve that DM before it becomes active.</p>
+        <div class="step-num">Step 4 — Restart OpenClaw</div>
+        <h3>Load the new Telegram channel</h3>
+        <p>After saving your config, restart the gateway:</p>
+        <pre><code>openclaw gateway restart</code></pre>
+        <p>Then check that Telegram came up clean:</p>
+        <pre><code>openclaw status</code></pre>
+        <p>You should see Telegram listed as active/OK.</p>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 5</div>
-        <h3>Approve the pairing request</h3>
-        <p>Approve the Telegram pairing code inside OpenClaw. Once approved, your Telegram account can talk directly to the assistant.</p>
+        <div class="step-num">Step 5 — Start a DM and approve pairing</div>
+        <h3>Connect your Telegram account</h3>
+        <ol>
+          <li>Open Telegram and find the bot you just created</li>
+          <li>Send it any message (like <code>hello</code>)</li>
+          <li>OpenClaw will log a pairing request with a code</li>
+          <li>Approve it:</li>
+        </ol>
+        <pre><code>openclaw devices approve YOUR_PAIRING_CODE</code></pre>
+        <p>Once approved, your Telegram DM is live with the assistant.</p>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 6</div>
-        <h3>Verify Telegram is live</h3>
-        <p>Check OpenClaw status and confirm Telegram shows as active and healthy before testing messages.</p>
+        <div class="step-num">Step 6 — Send a test message</div>
+        <h3>Verify two-way communication</h3>
+        <p>Send your bot a message from Telegram. You should get a text reply back within a few seconds.</p>
+        <div class="warn">If replies are slow or never arrive, the most common cause is a <strong>duplicate bot token</strong> — another process polling the same bot. Fix: generate a fresh token from BotFather with <code>/revoke</code>, update your config, and restart.</div>
+      </div>
+
+      <!-- ===================== PART 2: ELEVENLABS ===================== -->
+      <h2 id="part2">Part 2 — ElevenLabs Voice Setup</h2>
+
+      <div class="step">
+        <div class="step-num">Step 7 — Create an ElevenLabs account</div>
+        <h3>Sign up and get your API key</h3>
+        <ol>
+          <li>Go to <a href="https://elevenlabs.io" style="color:var(--cyan)">elevenlabs.io</a> and create a free account</li>
+          <li>Once logged in, go to your <strong>Profile → API Keys</strong></li>
+          <li>Click <strong>"Create API Key"</strong> and copy it</li>
+          <li>Save it — you need it in Step 9</li>
+        </ol>
+        <div class="note">The free tier gives you 10,000 characters per month. That's plenty for testing. Paid plans unlock more characters, voice cloning, and higher quality models.</div>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 7</div>
-        <h3>Fix slow or broken replies if needed</h3>
-        <p>If Telegram feels slow or messages stop arriving, the most common beginner issue is a duplicate bot token or another process polling the same bot. Replace the old token if needed, then restart and test again.</p>
+        <div class="step-num">Step 8 — Pick a voice</div>
+        <h3>Choose or create a voice for your assistant</h3>
+        <ol>
+          <li>In the ElevenLabs dashboard, go to <strong>Voice Library</strong></li>
+          <li>Browse community voices or use a default one</li>
+          <li>Click on a voice you like — note the <strong>Voice ID</strong> from the URL or the "..." menu</li>
+          <li>Example default voice IDs:
+            <ul>
+              <li><code>EXAVITQu4vr4xnSDxMaL</code> — Bella (warm, natural)</li>
+              <li><code>21m00Tcm4TlvDq8ikWAM</code> — Rachel (calm, clear)</li>
+              <li><code>AZnzlk1XvdvUeBnXmlld</code> — Domi (energetic)</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="note">You can also create a custom voice clone under <strong>Voice Lab → Instant Voice Cloning</strong>. Upload a short audio clip and ElevenLabs builds a voice from it.</div>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 8</div>
-        <h3>Send a confirmation test</h3>
-        <p>Send yourself a simple confirmation message to make sure delivery works end to end.</p>
+        <div class="step-num">Step 9 — Set your API key as an environment variable</div>
+        <h3>Make the key available to OpenClaw</h3>
+        <p>Add this line to your shell profile (<code>~/.zshrc</code> or <code>~/.bashrc</code>):</p>
+        <pre><code>export ELEVENLABS_API_KEY="your_api_key_here"</code></pre>
+        <p>Then reload your shell:</p>
+        <pre><code>source ~/.zshrc</code></pre>
+        <p>OpenClaw will automatically pick up this environment variable.</p>
+        <div class="warn">Restart the gateway after setting the env variable so OpenClaw can see it: <code>openclaw gateway restart</code></div>
       </div>
 
       <div class="step">
-        <div class="step-num">Step 9</div>
-        <h3>Use voice replies</h3>
-        <p>Once voice is enabled in your OpenClaw runtime, Telegram can deliver spoken replies as audio. If text works but voice does not, verify your TTS provider is enabled and then test a short spoken reply first.</p>
+        <div class="step-num">Step 10 — Add TTS config to OpenClaw</div>
+        <h3>Enable voice replies</h3>
+        <p>Add the <code>messages.tts</code> block to your <code>openclaw.json</code>. Here's a complete working config with both Telegram and ElevenLabs:</p>
+        <pre><code>{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_BOT_TOKEN_HERE",
+      "dmPolicy": "pairing"
+    }
+  },
+  "messages": {
+    "tts": {
+      "auto": "always",
+      "provider": "elevenlabs",
+      "providers": {
+        "elevenlabs": {
+          "apiKey": "${ELEVENLABS_API_KEY}",
+          "model": "eleven_multilingual_v2",
+          "voiceId": "EXAVITQu4vr4xnSDxMaL",
+          "voiceSettings": {
+            "stability": 0.5,
+            "similarityBoost": 0.75,
+            "style": 0.0,
+            "useSpeakerBoost": true,
+            "speed": 1.0
+          },
+          "applyTextNormalization": "auto",
+          "languageCode": "en"
+        }
+      }
+    }
+  }
+}</code></pre>
+        <div class="note"><strong>Key fields explained:</strong>
+          <ul>
+            <li><code>auto: "always"</code> — every reply becomes a voice message. Change to <code>"inbound"</code> to only reply with voice when the user sends voice first.</li>
+            <li><code>provider: "elevenlabs"</code> — tells OpenClaw to use ElevenLabs for TTS.</li>
+            <li><code>apiKey: "${ELEVENLABS_API_KEY}"</code> — reads from your environment variable.</li>
+            <li><code>model: "eleven_multilingual_v2"</code> — best quality model. Use <code>"eleven_v3"</code> for the newest model if available on your plan.</li>
+            <li><code>voiceId</code> — the ElevenLabs voice ID you picked in Step 8.</li>
+            <li><code>voiceSettings</code> — fine-tune how the voice sounds:
+              <ul>
+                <li><code>stability</code> (0–1): higher = more consistent, lower = more expressive</li>
+                <li><code>similarityBoost</code> (0–1): higher = closer to original voice</li>
+                <li><code>style</code> (0–1): higher = more expressive delivery</li>
+                <li><code>speed</code> (0.5–2.0): 1.0 = normal pace</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <h2>Simple beginner checklist</h2>
+      <div class="step">
+        <div class="step-num">Step 11 — Restart and test voice</div>
+        <h3>Hear your assistant speak</h3>
+        <ol>
+          <li>Restart the gateway: <code>openclaw gateway restart</code></li>
+          <li>Send your bot a message in Telegram</li>
+          <li>The reply should arrive as a <strong>voice message</strong> (audio)</li>
+        </ol>
+        <p>You can also test voice directly without waiting for a chat reply:</p>
+        <pre><code>/tts audio Hello, this is a test of my ElevenLabs voice.</code></pre>
+        <p>This sends a one-off audio message through Telegram.</p>
+      </div>
+
+      <!-- ===================== PART 3: CONNECT ===================== -->
+      <h2 id="part3">Part 3 — Fine-Tuning &amp; Extras</h2>
+
+      <div class="step">
+        <div class="step-num">Optional — Voice-only on voice inbound</div>
+        <h3>Only reply with voice when the user sends voice</h3>
+        <p>If you don't want every reply to be audio, change <code>auto</code> to <code>"inbound"</code>:</p>
+        <pre><code>"auto": "inbound"</code></pre>
+        <p>Now the assistant only sends voice back when you send a voice message first. Regular text messages get regular text replies.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Optional — Use /tts commands</div>
+        <h3>Control voice on the fly</h3>
+        <ul>
+          <li><code>/tts status</code> — see current TTS settings, provider, and voice</li>
+          <li><code>/tts on</code> — enable auto voice replies</li>
+          <li><code>/tts off</code> — disable auto voice replies</li>
+          <li><code>/tts audio Hello world</code> — send a one-off voice message</li>
+          <li><code>/tts provider elevenlabs</code> — switch provider mid-session</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Optional — Add a voice persona</div>
+        <h3>Give your assistant a consistent spoken identity</h3>
+        <p>You can define a persona with a name and style that carries across sessions:</p>
+        <pre><code>"messages": {
+  "tts": {
+    "auto": "always",
+    "provider": "elevenlabs",
+    "persona": "assistant",
+    "personas": {
+      "assistant": {
+        "label": "InnerG Assistant",
+        "description": "Warm, confident, efficient.",
+        "provider": "elevenlabs",
+        "providers": {
+          "elevenlabs": {
+            "voiceId": "EXAVITQu4vr4xnSDxMaL",
+            "modelId": "eleven_multilingual_v2",
+            "seed": 42,
+            "voiceSettings": {
+              "stability": 0.55,
+              "similarityBoost": 0.8,
+              "style": 0.15,
+              "useSpeakerBoost": true,
+              "speed": 1.05
+            }
+          }
+        }
+      }
+    },
+    "providers": {
+      "elevenlabs": {
+        "apiKey": "${ELEVENLABS_API_KEY}",
+        "model": "eleven_multilingual_v2"
+      }
+    }
+  }
+}</code></pre>
+        <div class="note"><code>seed</code> makes the voice more deterministic — same text produces more consistent output each time. Value is any integer from 0 to 4,294,967,295.</div>
+      </div>
+
+      <!-- ===================== TROUBLESHOOTING ===================== -->
+      <h2 id="troubleshooting">Troubleshooting</h2>
+
+      <div class="step">
+        <div class="step-num">Problem — Telegram replies are slow or missing</div>
+        <h3>Fix: Check for duplicate bot tokens</h3>
+        <ul>
+          <li>Only one process should poll your bot token at a time</li>
+          <li>If you set up the bot somewhere else before, revoke and regenerate the token in BotFather with <code>/revoke</code></li>
+          <li>Update the token in your config and restart</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Problem — No voice / only text replies</div>
+        <h3>Fix: Check TTS config and API key</h3>
+        <ol>
+          <li>Run <code>/tts status</code> in Telegram to see if TTS is active</li>
+          <li>Confirm <code>ELEVENLABS_API_KEY</code> is set: <code>echo $ELEVENLABS_API_KEY</code></li>
+          <li>Check that <code>messages.tts.auto</code> is set to <code>"always"</code> or <code>"inbound"</code></li>
+          <li>Check your ElevenLabs dashboard — did you hit your character limit?</li>
+          <li>Restart the gateway after any config or env change</li>
+        </ol>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Problem — Voice sounds robotic or wrong</div>
+        <h3>Fix: Tune voiceSettings</h3>
+        <ul>
+          <li>Increase <code>stability</code> (try 0.6–0.75) for more consistent delivery</li>
+          <li>Increase <code>similarityBoost</code> (try 0.8–0.9) to sound closer to the original voice sample</li>
+          <li>Try a different voice ID — some voices respond better to certain settings</li>
+          <li>Switch to <code>"eleven_v3"</code> model if available — it's more natural-sounding</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <div class="step-num">Problem — Pairing code not showing up</div>
+        <h3>Fix: Check OpenClaw logs</h3>
+        <ul>
+          <li>Run <code>openclaw status</code> to see if Telegram is online</li>
+          <li>Check the gateway logs for errors related to the Telegram channel</li>
+          <li>Make sure the bot token is correct and hasn't been revoked</li>
+        </ul>
+      </div>
+
+      <!-- ===================== CHECKLIST ===================== -->
+      <h2 id="checklist">Full Setup Checklist</h2>
       <ol>
-        <li>Create bot in BotFather</li>
-        <li>Add token to OpenClaw</li>
-        <li>Enable Telegram</li>
-        <li>Restart gateway</li>
-        <li>Approve DM pairing</li>
-        <li>Confirm Telegram status is OK</li>
-        <li>Send a test message</li>
-        <li>Test a voice reply</li>
+        <li>☐ Create Telegram bot via @BotFather → save bot token</li>
+        <li>☐ Add Telegram config to <code>openclaw.json</code></li>
+        <li>☐ Restart gateway → confirm Telegram status OK</li>
+        <li>☐ DM your bot → approve pairing code</li>
+        <li>☐ Send test message → confirm text reply works</li>
+        <li>☐ Create ElevenLabs account → copy API key</li>
+        <li>☐ Pick a voice → note the voice ID</li>
+        <li>☐ Export <code>ELEVENLABS_API_KEY</code> in shell profile</li>
+        <li>☐ Add TTS config to <code>openclaw.json</code></li>
+        <li>☐ Restart gateway → send test → confirm voice reply</li>
+        <li>☐ Tune voiceSettings to taste</li>
+        <li>☐ Done ✅</li>
       </ol>
 
-      <h2>Important note about voice</h2>
-      <p>The exact original voice setup sequence was not fully documented during the first pass. What is confirmed is that <strong>voice/TTS is currently enabled in the runtime</strong>. If you want, the next step is to turn this guide into a more complete version with the exact TTS provider settings, screenshots, and troubleshooting notes.</p>
-
-      <div class="footer">Prepared for InnerG Intel free resources. You can print this page to PDF or export it as a downloadable handout.</div>
+      <div class="footer">Prepared by InnerG Intel — Free Resources Collection. Print this page or share the link.</div>
     </div>
   </div>
 </body>
