@@ -68,7 +68,7 @@
       <aside class="panel form-panel">
         <h2>Get instant access</h2>
         <p class="small">Enter your name and email to download the current resource and get notified when new ones drop.</p>
-        <form id="lead-form" action="#" method="post">
+        <form id="lead-form" action="https://formspree.io/f/mdabeqed" method="POST">
           <input type="text" name="name" placeholder="First name" required />
           <input type="email" name="email" placeholder="Email address" required />
           <button type="submit">Get the free resources</button>
@@ -90,7 +90,15 @@
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
       localStorage.setItem('innergFreeResourcesLead', JSON.stringify({ ...data, submittedAt: new Date().toISOString() }));
-      window.location.href = 'thank-you.html';
+      fetch('https://formspree.io/f/mdabeqed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function () {
+        window.location.href = 'thank-you.html';
+      }).catch(function () {
+        window.location.href = 'thank-you.html';
+      });
     });
   </script>
 </body>
